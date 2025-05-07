@@ -11,5 +11,53 @@
         <h1 class="text-4xl font-bold text-blue-500">Witaj na moim portfolio!</h1>
         <p class="text-xl mt-4">To jest przykład strony z wykorzystaniem Tailwind CSS.</p>
     </div>
+
+    <!-- Sekcja kontaktowa -->
+    <section id="contact" class="bg-gray-100 py-8">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-3xl font-bold mb-6">Skontaktuj się ze mną</h2>
+            <form id="contact-form" action="https://formspree.io/f/myzwjwkz" method="POST" class="space-y-4">
+                <div>
+                    <label for="name" class="block text-lg font-medium">Imię:</label>
+                    <input type="text" id="name" name="name" required class="w-full p-2 border border-gray-300 rounded-md">
+                </div>
+                <div>
+                    <label for="email" class="block text-lg font-medium">Email:</label>
+                    <input type="email" id="email" name="email" required class="w-full p-2 border border-gray-300 rounded-md">
+                </div>
+                <div>
+                    <label for="message" class="block text-lg font-medium">Wiadomość:</label>
+                    <textarea id="message" name="message" required class="w-full p-2 border border-gray-300 rounded-md" rows="4"></textarea>
+                </div>
+                <button type="submit" class="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600">Wyślij</button>
+            </form>
+            <p id="form-status" class="mt-4 text-red-500"></p>
+        </div>
+    </section>
+
+    <script>
+        document.getElementById('contact-form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Zapobiega domyślnej akcji (wysłanie formularza)
+
+            // Pobieranie wartości z formularza
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const message = document.getElementById('message').value.trim();
+
+            // Prosta walidacja
+            if (!name || !email || !message) {
+                document.getElementById('form-status').textContent = 'Wszystkie pola są wymagane.';
+                return;
+            }
+
+            // Jeśli walidacja przejdzie, wyświetlamy sukces
+            document.getElementById('form-status').textContent = 'Dziękujemy za wiadomość! Skontaktujemy się z Tobą wkrótce.';
+            document.getElementById('form-status').classList.remove('text-red-500');
+            document.getElementById('form-status').classList.add('text-green-500');
+
+            // Resetowanie formularza po wysłaniu
+            document.getElementById('contact-form').reset();
+        });
+    </script>
 </body>
 </html>
